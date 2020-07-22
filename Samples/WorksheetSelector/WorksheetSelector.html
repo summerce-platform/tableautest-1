@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>시트 선택 결과</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Extensions Library (this will be hosted on a CDN eventually) -->
+    <script src="../../lib/tableau.extensions.1.latest.js"></script>
+
+    <!-- Our extension's code -->
+    <script src="./WorksheetSelector.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="dataSources" style="display: none;">
+        <!-- <h4>All DataSources</h4> -->
+        <div class="table-responsive" style="border: none;">
+          <table id="loading" class="table" style="border: none;">
+            <tbody style="border: none;"><tr style="border: none;"><td style="border: none;"></td></tr></tbody>
+          </table>         
+          <table id="dataSourcesTable" class="table table-striped hidden" style="border: none;">
+            <thead>
+              <h4></h4>
+              <tr>
+                <!-- <th>데이터 원본 이름</th>
+                <th>Auto Refresh</th>
+                <th>Get Data</th>
+                <th style="width: 100%">Info</th> -->
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <h4 style="font-weight: bold;">시트 선택 후 데이터를 가져올 수 있습니다!</h4>
+
+      <!-- 다이얼로그에서의 반환 값 표시 영역 -->
+      <div id="from-dialog" class="mb-5">
+        <p style="font-weight: bold;">
+          <!-- --- 밑에 다이얼로그에 의해 반환된 값이 표시됨 --- -->
+        </p>
+
+      </div>
+      <div id="dataTarget2"></div>
+      <button id="getTESTBtn" class="btn btn-info">데이터가져오기</button>
+      <div id="dataTarget"></div>
+      <hr />
+
+      <!-- 에러 발생 시 표시 영역 -->
+      <div id="error-log" class="mb-5">
+        <p style="font-weight: bold;">---- Errorlog ----</p>
+      </div>
+
+      <hr />
+
+      <!-- 구성 버튼(dataSource.js 파일에서 configure() 함수 연결해 두었음) -->
+      <button id="configure-button" class="btn btn-block btn-success">설정하기</button>
+    </div>
+  </body>
+</html>
