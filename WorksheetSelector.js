@@ -54,7 +54,7 @@
   // 구성 버튼을 눌렀을 때 실행되는 함수
   function configure() {
     // 다이얼로그의 html 파일 경로 지정 = 편의상 상대경로로 지정해두었음 : 변경 필요
-    const popupUrl = "./WorksheetSelectorDialog.html";
+    const popupUrl = "https://km20646.github.io/tableautest/WorksheetSelectorDialog.html";
 
     // 다이얼로그에게 전달해주고 싶은 값
     var myOpenPayload = "Msg from parent";
