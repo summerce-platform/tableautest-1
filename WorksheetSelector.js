@@ -40,7 +40,7 @@
 
               
               $.ajax({ 
-                crossDomain : true;
+                crossDomain : true,
                 url: 'http://mirs.co.kr:8083/predict', //API의 url
                 dataType: 'json', //데이터 타입 지정
                 type:'post', //post 방식 사용
