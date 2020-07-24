@@ -68,10 +68,7 @@
                         function setInfo() {
                             
                         for (var i = 0; i <= 2; i++) {
-                            var img = image1[i];  
-                            var img2 = $(`<img style="margin: 20px 20px" src="${img}"width="25%" height="25%">`);
-                            $("#gallbox").append(img2);
-                                //document.getElementById('title' + i).src = image1[i];
+                                document.getElementById('title' + i).src = image1[i];
                                 document.getElementById('good' + i).innerHTML = goods1[i];
                                 document.getElementById('link' + i).href = link1[i];
                                 document.getElementById('pid1').innerHTML = mkshpvalue+" 님을 위한 추천 상품";
