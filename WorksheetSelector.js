@@ -19,8 +19,81 @@
             worksheet.getSummaryDataAsync().then(function(sumdata){
             const worksheetData = sumdata;
             var tgt = document.getElementById("dataTarget");
-            var sumdata= JSON.stringify(sumdata);
+            // var sumdata= JSON.stringify(sumdata);
             
+
+              var datacol = sumdata._data[0];
+              
+              for (var i = 0; i < sumdata._columns.length; i++) {
+              
+                if(sumdata._columns[i]._fieldName=="Mkshp Id"){
+                  console.log(i);
+                  var mIndex = i;
+                  console.log(mIndex);
+                  console.log(datacol[mIndex]._value);
+                  var mkshpvalue= datacol[mIndex]._value;
+              
+                }
+              
+              }
+              document.getElementById("dk").innerHTML="Mkshp Id는 "+mkshpvalue+" 입니다~~!";
+
+              
+              $.ajax({ 
+             
+                url: 'http://mirs.co.kr:8083/predict', //API의 url
+                dataType: 'json', //데이터 타입 지정
+                type:'post', //post 방식 사용
+                data : {
+                            "shopcode" : 1,
+                            "id" : mkshpvalue
+                    }, //post로 api와 통신할 데이터
+                success: function(data) { 
+                            
+                    data=data[0];
+                    console.log(data);
+                            
+                    var image1 = new Array();
+                    var goods1 = new Array();
+                    var link1 = new Array();
+        
+                        for (var key in data) {
+                        
+                                image1.push(data[key].GOODS_IMG_URL);
+                                goods1.push(data[key].GOODS_NAME);
+                                link1.push(data[key].GOODS_URL);
+        
+                        }
+                        //set_info는 배열의 1번째~n번째 웹페이지 이미지,상품이름,상품링크를 호출하는 함수이다.
+                        function setInfo() {
+                            
+                        for (var i = 0; i <= 2; i++) {
+        
+                                document.getElementById('title' + i).src = image1[i];
+                                document.getElementById('good' + i).innerHTML = goods1[i];
+                                document.getElementById('link' + i).href = link1[i];
+                                document.getElementById('pid1').innerHTML = mkshpvalue+" 님을 위한 추천 상품";
+                            }
+        
+                        }
+                    
+                    setInfo();
+        
+        
+                    },   ///api와 통신 성공시 실행될 함수
+                    error: function (request, status, error) {
+                        console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                    }  // api와 통신 실패시 실행될 함수
+                    
+            });
+              //여기에 ajax 구문 써야함
+
+              // $.ajax({
+
+              // });
+
+
+
             tgt.innerHTML = "<h4 id='printdata'>출력된 데이터:</h4><p>"+sumdata+"</p>";
           }
         )}
@@ -54,7 +127,7 @@
   // 구성 버튼을 눌렀을 때 실행되는 함수
   function configure() {
     // 다이얼로그의 html 파일 경로 지정 = 편의상 상대경로로 지정해두었음 : 변경 필요
-    const popupUrl = "https://km20646.github.io/tableautest/WorksheetSelectorDialog.html";
+    const popupUrl = "./WorksheetSelectorDialog.html";
 
     // 다이얼로그에게 전달해주고 싶은 값
     var myOpenPayload = "Msg from parent";
